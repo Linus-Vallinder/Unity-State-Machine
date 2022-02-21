@@ -1,18 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Task : MonoBehaviour
+namespace FSM.Examples
 {
-    // Start is called before the first frame update
-    void Start()
+    public abstract class Task : MonoBehaviour
     {
-        
-    }
+        [Header("Task Position Options")]
+        [SerializeField] private Vector3 _positionOffset;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public bool IsCompleted
+        {
+            get { return _isCompleted; }
+            set { _isCompleted = value; }
+        }
+
+        private bool _isCompleted = false;
+
+        public Vector3 GetTaskPosition()
+        {
+            return transform.position + _positionOffset;
+        }
+
     }
 }

@@ -8,7 +8,19 @@ namespace FSM.Examples
 
         public override void Execute()
         {
-            //Select a random task
+            var randomTask = stateMachine.GetRandomTask();
+            stateMachine.CurrentTask = randomTask;
+
+            var targetPosition = stateMachine.CurrentTask.GetTaskPosition();
+            stateMachine.SetAgentDestination(targetPosition);
+        }
+
+        public override void StateUpdateLogic()
+        {
+            if (stateMachine.CurrentTask.IsCompleted)
+            {
+                stateMachine.SetState(new GoToRandomTask(stateMachine));
+            }
         }
     }
 }

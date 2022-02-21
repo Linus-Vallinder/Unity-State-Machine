@@ -24,7 +24,7 @@ namespace FSM
 
         public void SetState(State<T> state)
         {
-            if (state != null)
+            if (_currentState != null)
             {
                 _currentState.Cancel();
             }
